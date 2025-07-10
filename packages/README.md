@@ -77,6 +77,22 @@ In this case the div element within the MarketingApp component is referenced by 
 
 ## What did I learn from this project ?
 
+### Setting up AWS cloud resources for hosting microfrontends
+
+To set up an AWS S3 bucket for hosting static files, follow these steps:
+
+1. **Create an S3 Bucket**:
+   - Log in to the AWS Management Console.
+   - Navigate to the S3 service.
+   - Click on "Create bucket".
+   - Enter a unique bucket name and select a region.
+   - Configure options as needed
+   - enable static website hosting if you want to serve files directly.
+   - Disabled "Block all public access" if you want the bucket to be publicly accessible.
+   - Added a Bucket policy using policy generator to allow public read access to the bucket contents.
+   - Click "Create bucket".
+2. **Create AWS Cloudfront**
+
 ## Resources
 
 https://childish-legal-44d.notion.site/Micro-Frontends-224941c82f25809daba9eaa9f7f279e7?source=copy_link
