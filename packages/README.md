@@ -75,6 +75,8 @@ In this project it is used within the `MarketingApp.js` file to mount the market
 
 In this case the div element within the MarketingApp component is referenced by the object created by `useRef`, and the `mount` function is called with this reference to render the marketing app into that element.
 
+## What did I learn from this project ?
+
 ## Resources
 
 https://childish-legal-44d.notion.site/Micro-Frontends-224941c82f25809daba9eaa9f7f279e7?source=copy_link
