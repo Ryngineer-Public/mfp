@@ -48,3 +48,7 @@ This project is licensed under the MIT License.
 ## Notes
 
 This container application is accessible via aws cloufront distribution. Cloudfront caches the application for performance. To invalidate the cache after deployment, the github workflow has a run step that invalidates the index.html under the container/latest path. This ensures that users always get the latest version of the application. The other files are updated automatically since the file name is appended with the build hash thus ensuring that the browser fetches the latest version of the files.
+
+The container application needs to have access to the dynamic domain where the marketing application is hosted. This is done by setting the `PRODUCTION_DOMAIN` environment variable in the GitHub secrets. The container application uses this domain to load the remote entry file of the marketing application dynamically.
+The `webpack.prod.js` file in the container package is configured to use this domain for the `marketing` remote application.
+The `publicPath` in the `webpack.prod.js` file is set to `/container/latest/`, which defines the base path for all assets within the application. This ensures that all static files are served from the correct path when deployed to production.

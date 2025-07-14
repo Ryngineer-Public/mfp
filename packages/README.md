@@ -93,6 +93,10 @@ To set up an AWS S3 bucket for hosting static files, follow these steps:
    - Click "Create bucket".
 2. **Create AWS Cloudfront (CDN)**
 
+- Create a new ditribution.
+- The Distibution Key / ID will need to stored as a secret in github secrets for the github workflow to use it.
+- CDN cacahes the files for performance. WE will need to create an invalidation for the index.html file after deployment to ensure that users always get the latest version of the application. This is done as a part of the github workflows run command. The other files are updated automatically since the file name is appended with the build hash thus ensuring that the browser fetches the latest version of the files.
+
 ## Resources
 
 https://childish-legal-44d.notion.site/Micro-Frontends-224941c82f25809daba9eaa9f7f279e7?source=copy_link

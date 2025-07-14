@@ -13,6 +13,8 @@ const prodConfig = {
     // This helps with cache busting, as the filename will change
     // whenever the content of the file changes, ensuring that browsers load the latest version.
     filename: "[name].[contenthash].js",
+    // publicPath defines the base path for all assets within the application
+    publicPath: "/marketing/latest/",
   },
   plugins: [
     new ModuleFederationPlugin({
