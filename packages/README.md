@@ -91,7 +91,7 @@ To set up an AWS S3 bucket for hosting static files, follow these steps:
    - Disabled "Block all public access" if you want the bucket to be publicly accessible.
    - Added a Bucket policy using policy generator to allow public read access to the bucket contents.
    - Click "Create bucket".
-2. **Create AWS Cloudfront**
+2. **Create AWS Cloudfront (CDN)**
 
 ## Resources
 

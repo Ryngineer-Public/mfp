@@ -44,3 +44,7 @@ Contributions are welcome! Please open issues or submit pull requests for improv
 ## License
 
 This project is licensed under the MIT License.
+
+## Notes
+
+This container application is accessible via aws cloufront distribution. Cloudfront caches the application for performance. To invalidate the cache after deployment, the github workflow has a run step that invalidates the index.html under the container/latest path. This ensures that users always get the latest version of the application. The other files are updated automatically since the file name is appended with the build hash thus ensuring that the browser fetches the latest version of the files.
