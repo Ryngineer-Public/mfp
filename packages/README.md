@@ -9,7 +9,12 @@ This directory contains the core microfrontend applications for the project. Eac
 - **dashboard/**: Provides dashboard features and UI components. This component is built using VUE
 - **marketing/**: Contains marketing pages and related UI.
 
-Each package is set up as an individual project with its own `package.json`, dependencies, and build configuration. Most packages use React and Material-UI for UI development, and Webpack for bundling.
+Each package is set up as an individual project with its own `package.json`, dependencies, and build configuration. Most
+packages use React and Material-UI for UI development, and Webpack for bundling.
+
+## Application Deployment
+
+Application is deployed and available [here](https://d1p4vylbfr76r9.cloudfront.net/)
 
 ## Development
 
