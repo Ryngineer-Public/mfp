@@ -26,6 +26,7 @@ const devConfig = {
       remotes: {
         marketing: "marketing@http://localhost:8081/remoteEntry.js",
         auth: "auth@http://localhost:8082/remoteEntry.js",
+        dashboard: "dashboard@http://localhost:8083/remoteEntry.js",
       },
       // This configuration allows the container application to share dependencies with the marketing application.
       // Thus reducing the bundle size and ensuring that both applications use the same version of these libraries.

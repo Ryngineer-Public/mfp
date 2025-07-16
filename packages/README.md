@@ -6,7 +6,7 @@ This directory contains the core microfrontend applications for the project. Eac
 
 - **auth/**: Handles authentication-related UI and logic. Uses React, Material-UI, and React Router DOM.
 - **container/**: The main host application that composes and orchestrates the microfrontends.
-- **dashboard/**: Provides dashboard features and UI components.
+- **dashboard/**: Provides dashboard features and UI components. This component is built using VUE
 - **marketing/**: Contains marketing pages and related UI.
 
 Each package is set up as an individual project with its own `package.json`, dependencies, and build configuration. Most packages use React and Material-UI for UI development, and Webpack for bundling.
