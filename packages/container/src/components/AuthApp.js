@@ -1,4 +1,4 @@
-import { mount } from "marketing/MarketingApp";
+import { mount } from "auth/AuthApp";
 import React, { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -7,7 +7,8 @@ export default () => {
   const history = useHistory();
 
   useEffect(() => {
-    // Mount the MarketingApp when the component mounts
+    console.log("AuthApp: useEffect called");
+    // Mount the AuthApp when the component mounts
     // During load invokes mount function from marketing webservice that passes the below div element
     // The mount funciton within Markeing app will render the marketing app into this div element
     // Argument 2 : onNavigate is a callback function that will be invoked when the pathname changes
@@ -22,8 +23,13 @@ export default () => {
           return;
         }
         // Update the browser history with the new pathname
+        console.log(
+          `Container: onParentNavigate called with pathname: ${newPathname}`
+        );
+        console.log(`Container: Current pathname: ${pathname}`);
         history.push(newPathname);
       },
+      initialPath: history.location.pathname, // Pass the current pathname to the AuthApp
     });
 
     history.listen(onParentNavigate);
@@ -31,7 +37,7 @@ export default () => {
 
   return (
     <div>
-      {/* The MarketingApp will be mounted here */}
+      {/* The AuthApp will be mounted here */}
       <div ref={ref} />
     </div>
   );

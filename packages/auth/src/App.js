@@ -9,14 +9,13 @@ import {
   StylesProvider,
   createGenerateClassName,
 } from "@material-ui/core/styles";
-
-import Landing from "./components/Landing";
-import Pricing from "./components/Pricing";
+import SignIn from "./components/Signin";
+import SignUp from "./components/Signup";
 
 // the `createGenerateClassName` function is used to generate unique class names for Material-UI components.
 // in this case the css keys would be names as mkt1 , mkt2 etc
 const generateClassName = createGenerateClassName({
-  productionPrefix: "mkt", // Prefix for class names in production
+  productionPrefix: "aut", // Prefix for class names in production
   disableGlobal: true, // Disable global styles to avoid conflicts
 });
 
@@ -27,8 +26,8 @@ export default ({ history }) => {
     <Router history={history}>
       <StylesProvider generateClassName={generateClassName}>
         <Switch>
-          <Route path="/" exact component={Landing} />
-          <Route path="/pricing" exact component={Pricing} />
+          <Route path="/auth/signin" component={SignIn} />
+          <Route path="/auth/signup" component={SignUp} />
         </Switch>
       </StylesProvider>
     </Router>

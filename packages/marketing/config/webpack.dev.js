@@ -8,11 +8,18 @@ const packageJson = require("../package.json");
 
 const devConfig = {
   mode: "development",
+  // Output configuration for development mode
+  // This is needed as we start to see issues when running application with nested paths " /auth/siginup " etc
+  output: {
+    publicPath: "http://localhost:8081/",
+  },
   devServer: {
     port: 8081,
-    historyApiFallback: {
-      index: "index.html",
-    },
+    // htmlk file to navaigate to when the URL does not match any static files
+    // historyApiFallback: {
+    //   index: "/index.html",
+    // },
+    historyApiFallback: true, // This will serve index.html for all 404s, useful for single-page applications
   },
   plugins: [
     new ModuleFederationPlugin({

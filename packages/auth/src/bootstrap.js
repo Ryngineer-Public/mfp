@@ -22,6 +22,11 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
     onParentNavigate: ({ pathname: newPathname }) => {
       const { pathname } = history.location;
       // If the new pathname is different from the current pathname, update the history
+      console.log(
+        `Container: onParentNavigate called with pathname: ${newPathname}`
+      );
+      console.log(`Container: Current pathname: ${pathname}`);
+      // If the new pathname is the same as the current pathname
       if (pathname === newPathname) {
         return;
       }
@@ -33,9 +38,9 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
 
 // If we are in development and in isolation, call mount immediately
 if (process.env.NODE_ENV === "development") {
-  const el = document.querySelector("#_marketing-dev-root");
+  const el = document.querySelector("#_auth-dev-root");
 
-  // If an element with the id "_marketing-dev-root" exists, mount the app
+  // If an element with the id "auth-dev-root" exists, mount the app
   if (el) {
     // Pass a default history if the microfrintenf is run in isolation. This would configure microfrintend to use Browser History instead of Memory History when run from a container application
     mount(el, { defaultHistory: createBrowserHistory() });

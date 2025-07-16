@@ -3,10 +3,6 @@ const common = require("./webpack.common.js");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 // Load the package.json file to access the dependencies and use them within the shared configuration
 const packageJson = require("../package.json");
-// The domain where the marketing application is hosted
-// This is used to dynamically load the remote entry file of the marketing application
-// It can be set via environment variables for flexibility in different environments
-const domain = process.env.PRODUCTION_DOMAIN || "localhost:8080";
 
 const prodConfig = {
   mode: "production",
@@ -18,16 +14,18 @@ const prodConfig = {
     // whenever the content of the file changes, ensuring that browsers load the latest version.
     filename: "[name].[contenthash].js",
     // publicPath defines the base path for all assets within the application
-    publicPath: "/container/latest/",
+    publicPath: "/auth/latest/",
   },
   plugins: [
     new ModuleFederationPlugin({
       // name is the unique identifier for this module federation configuration
-      name: "container",
-      // remotes defines the remote applications that this application can consume
-      remotes: {
-        marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
-        auth: `auth@${domain}/auth/latest/remoteEntry.js`,
+      name: "auth",
+      // filename defines the name of the file that will be generated for this module federation configuration
+      filename: "remoteEntry.js",
+      // exposes defines which modules from this application should be made available to other applications
+      exposes: {
+        // The key here would be used to import this module in other applications.
+        "./AuthApp": "./src/bootstrap",
       },
       // shared defines which dependencies should be shared between different applications
       shared: packageJson.dependencies,

@@ -2,6 +2,7 @@ const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+
 // Load the package.json file to access the dependencies and use them within the shared configuration
 const packageJson = require("../package.json");
 
@@ -10,11 +11,11 @@ const devConfig = {
   // Output configuration for development mode
   // This is needed as we start to see issues when running application with nested paths " /auth/siginup " etc
   output: {
-    publicPath: "http://localhost:8080/",
+    publicPath: "http://localhost:8082/",
   },
   devServer: {
-    port: 8080,
-    // Route to navigate to index.html when the URL does not match any static files
+    port: 8082,
+    // htmlk file to navaigate to when the URL does not match any static files
     // historyApiFallback: {
     //   index: "/index.html",
     // },
@@ -22,12 +23,15 @@ const devConfig = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "container",
-      remotes: {
-        marketing: "marketing@http://localhost:8081/remoteEntry.js",
-        auth: "auth@http://localhost:8082/remoteEntry.js",
+      // The name here
+      name: "auth",
+      filename: "remoteEntry.js",
+      exposes: {
+        // The key here would be used to import this module in other applications.
+        "./AuthApp": "./src/bootstrap",
       },
-      // This configuration allows the container application to share dependencies with the marketing application.
+
+      // This configuration allows the container application to share dependencies with the auth application.
       // Thus reducing the bundle size and ensuring that both applications use the same version of these libraries.
       // shared: ["react", "react-dom"],
       // Simpler approach rather than specifying each dependency manually
