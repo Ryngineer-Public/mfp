@@ -214,6 +214,17 @@ function App() {
 
 fallback prop of the Suspense component is used to display a loading indicator while the lazy-loaded component is being fetched. This ensures that the user sees a loading state instead of a blank screen while the component is being loaded.
 
+### Authenticatiion within the application
+
+In this project, we handle authentication using a separate microfrontend for the authentication UI. The `AuthApp` is responsible for managing user sign-in and sign-out functionality.
+
+1. User clicks "login" button in the container app.
+2. The `AuthApp` is mounted with a callback function `onSignIn` function passed as a prop to the auth application.
+3. The `onSignIn` function sets a container app state variable `userLoggedIn` to true, indicating that the user is signed in. ( i.e the function definition is within the container's `App.js` file)
+4. Within the `AuthApp`, when the user clicks the "Sign In" button, it calls the `onSignIn` function passed from the container app, which updates the state in the container app to reflect that the user is logged in.
+5. The `Header` component in the container app uses the `userLoggedIn` state to either set the button text to "login" or logout" based on the userLoggedIn state.
+6. Similarly, when the user clicks the "logout" button, the `onSignOut` function is called, which sets the `userLoggedIn` state to false, indicating that the user is logged out.
+
 ### Setting up AWS cloud resources for hosting microfrontends
 
 To set up an AWS S3 bucket for hosting static files, follow these steps:

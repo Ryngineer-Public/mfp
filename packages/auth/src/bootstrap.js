@@ -5,7 +5,7 @@ import App from "./App";
 
 // Mount function to start the application
 
-const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
+const mount = (el, { onNavigate, defaultHistory, initialPath, onSignIn }) => {
   const history =
     defaultHistory ||
     createMemoryHistory({
@@ -15,7 +15,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
     // invoke the onNavigate callback when the memory history changes
     history.listen(onNavigate); // Listen for navigation events
   }
-  ReactDom.render(<App history={history} />, el);
+  ReactDom.render(<App history={history} onSignIn={onSignIn} />, el);
 
   return {
     // This is a handler function that is used to update teh microfrontend's router history whenever the parent application navigates to a new route

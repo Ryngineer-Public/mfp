@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 // import MarketingApp from "./components/MarketingApp";
 // import AuthApp from "./components/AuthApp";
 import Progress from "./components/Progress";
@@ -12,7 +12,10 @@ import {
 // and only load the required microfrontend when the user navigates to that path
 const MarketingLazy = lazy(() => import("./components/MarketingApp"));
 const AuthAppLazy = lazy(() => import("./components/AuthApp"));
+
 export default () => {
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+
   // the `createGenerateClassName` function is used to generate unique class names for Material-UI components.
   // in this case the css keys would be names as mkt1 , mkt2 etc
   const generateClassName = createGenerateClassName({
@@ -25,13 +28,23 @@ export default () => {
         {/* <div> */}
         {/* This is a warpper component. This is required as App.js can return only react element */}
 
-        <Header />
+        <Header
+          signedIn={userLoggedIn}
+          onSignOut={() => setUserLoggedIn(false)}
+        />
         {/* <MarketingApp /> */}
         <Suspense fallback={<Progress />}>
           <Switch>
             {/* ORDER NEEDS TO BE MAINTAINED WITH GENERIC PATHS AT THE BOTTOM ELSE ALL PATHS ARE SERVED BY GENERIC PATH */}
             {/* 2. load the auth app */}
-            <Route path="/auth" component={AuthAppLazy} />
+            <Route path="/auth">
+              <AuthAppLazy
+                onSignIn={() => {
+                  console.log("Container: User signed in");
+                  setUserLoggedIn(true);
+                }}
+              />
+            </Route>
             {/* 1. load the marketing app */}
             <Route path="/" component={MarketingLazy} />
           </Switch>

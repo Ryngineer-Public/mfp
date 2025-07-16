@@ -2,7 +2,7 @@ import { mount } from "auth/AuthApp";
 import React, { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-export default () => {
+export default ({ onSignIn }) => {
   const ref = useRef(null);
   const history = useHistory();
 
@@ -23,13 +23,10 @@ export default () => {
           return;
         }
         // Update the browser history with the new pathname
-        console.log(
-          `Container: onParentNavigate called with pathname: ${newPathname}`
-        );
-        console.log(`Container: Current pathname: ${pathname}`);
         history.push(newPathname);
       },
       initialPath: history.location.pathname, // Pass the current pathname to the AuthApp
+      onSignIn,
     });
 
     history.listen(onParentNavigate);

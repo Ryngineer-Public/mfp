@@ -20,14 +20,19 @@ const generateClassName = createGenerateClassName({
 });
 
 // History is a field that holds routing ingormation for memeory router
-export default ({ history }) => {
+export default ({ history, onSignIn }) => {
+  console.log("AuthApp: Rendered", onSignIn);
   return (
     // Uses Memory Router to handle routing in a single-page application
     <Router history={history}>
       <StylesProvider generateClassName={generateClassName}>
         <Switch>
-          <Route path="/auth/signin" component={SignIn} />
-          <Route path="/auth/signup" component={SignUp} />
+          <Route path="/auth/signin">
+            <SignIn onSignIn={onSignIn} />
+          </Route>
+          <Route path="/auth/signup">
+            <SignUp onSignIn={onSignIn} />
+          </Route>
         </Switch>
       </StylesProvider>
     </Router>
